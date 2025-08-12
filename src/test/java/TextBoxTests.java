@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -13,7 +15,7 @@ public class TextBoxTests {
 
     @BeforeAll
     static void beforeAll(){
-        Configuration.browserSize = "1920*1080";
+        Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = true;
@@ -40,8 +42,7 @@ public class TextBoxTests {
         $$(".react-datepicker__day").findBy(text("16")).click();
 
         //set subject
-        $("#subjectsInput").setValue("QA Automation");
-        $$(".subjects-auto-complete__input").first().click();
+        $("#subjectsInput").setValue("Math").pressEnter();
         //set reading hobbies
         $("#hobbies-checkbox-2").parent().click();
         //Upload picture
@@ -56,13 +57,24 @@ public class TextBoxTests {
         $("#city").click();
         $(byText("Delhi")).click();
 
-
+        //Press submit button
         $(".btn-primary").pressEnter();
 
 
+        //Check if table is visible
+        $(".table-responsive").shouldBe(visible);
 
-
-
+        //Check each row for the certain value
+        $$(".table-responsive tbody tr").get(0).shouldHave(text("Student Name"), text("Nikita Ryazanov"));
+        $$(".table-responsive tbody tr").get(1).shouldHave(text("Student Email"), text("nikita@gmail.com"));
+        $$(".table-responsive tbody tr").get(2).shouldHave(text("Gender"), text("Male"));
+        $$(".table-responsive tbody tr").get(3).shouldHave(text("Mobile"), text("1234567890"));
+        $$(".table-responsive tbody tr").get(4).shouldHave(text("Date of Birth"), text("16 September,1993"));
+        $$(".table-responsive tbody tr").get(5).shouldHave(text("Subjects"), text("Maths"));
+        $$(".table-responsive tbody tr").get(6).shouldHave(text("Hobbies"), text("Reading"));
+        $$(".table-responsive tbody tr").get(7).shouldHave(text("Picture"), text("1.jpeg"));
+        $$(".table-responsive tbody tr").get(8).shouldHave(text("Address"), text("Saint-Petersburg"));
+        $$(".table-responsive tbody tr").get(9).shouldHave(text("State and City"), text("NCR Delhi"));
 
     }
 
