@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
@@ -27,6 +26,9 @@ public class TextBoxTests {
     void fillFormTest(){
         //open website
         open("/automation-practice-form") ;
+        //remove ads
+        executeJavaScript("$('footer').remove();");
+        executeJavaScript("$('#fixedban').remove();");
         //set firstName
         $("#firstName").setValue("Nikita");
         //set lastName
@@ -48,7 +50,7 @@ public class TextBoxTests {
         //set reading hobbies
         $("#hobbies-checkbox-2").parent().click();
         //Upload picture
-        $("#uploadPicture").uploadFile(new File("/home/vdiuser/Desktop/1.jpeg"));
+        $("#uploadPicture").uploadFromClasspath("1.jpeg");
         //set currebtAddress
         $("#currentAddress").setValue("Saint-Petersburg");
         //Choose state
