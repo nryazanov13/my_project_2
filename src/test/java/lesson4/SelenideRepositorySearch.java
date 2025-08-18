@@ -19,7 +19,7 @@ public class SelenideRepositorySearch {
 
 
     @Test
-    void shouldFindJUnit5CodeExample(){
+    void shouldFindJUnit5CodeExampleTest(){
         //Open selenide page on GitHub
         open("/selenide/selenide");
         //Click on wiki-tab
