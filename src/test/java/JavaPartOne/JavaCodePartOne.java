@@ -6,7 +6,7 @@ public class JavaCodePartOne {
 
         int firstNumberInt = 10;
         int secondNumberInt = 5;
-        double thirdNumberDouble = 3.0;
+        double thirdNumberDouble = 3.5;
 
         // 0) применить несколько арифметических операций ( + , -, * , /) над двумя примитивами типа int
         System.out.println("This is addition - " + (firstNumberInt + secondNumberInt));
