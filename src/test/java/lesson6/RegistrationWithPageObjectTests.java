@@ -1,0 +1,36 @@
+package lesson6;
+
+import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
+
+public class RegistrationWithPageObjectTests extends TestBase {
+
+    RegistrationPage registrationPage = new RegistrationPage();
+
+    @Test
+    void fillFormWithPageObjectTestPositive() {
+
+        registrationPage.openPage()
+                .setFirstNameInput("Nikita")
+                .setLastNameInput("Ryazanov")
+                .setEmailInput("nikita@gmail.com")
+                .setGenderInput("Male")
+                .setUserNumberInput("1234567890")
+                .setDateOfBirth("September", "1993", "16")
+                .setSubjectInput("Maths")
+                .setHobbiesInput("Reading")
+                .uploadPicture("1.jpeg")
+                .setCurrentAddress("Saint-Petersburg")
+                .setState("NCR")
+                .setCity("Delhi")
+                .clickSubmitButton()
+
+
+                //проверки
+                .checkIfTableIsVisible()
+                .checkResult("Student Name","Nikita Ryazanov");
+
+    }
+
+}
+
