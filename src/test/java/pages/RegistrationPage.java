@@ -2,9 +2,8 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultTableComponent;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -22,10 +21,12 @@ public class RegistrationPage {
             uploadPictureInput = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
             stateCityInput = $("#stateCity-wrapper"),
-            tableInput = $(".table-responsive"),
+
             submitInput = $("#submit");
 
     CalendarComponent calendarComponent = new CalendarComponent();
+
+    ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     public RegistrationPage openPage() {
         //open website
@@ -106,15 +107,19 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkIfTableIsVisible() {
-        tableInput.shouldBe(visible);
+        resultTableComponent.checkIfTableIsVisible();
+        return this;
+    }
+
+    public RegistrationPage checkIfTableIsNotVisible() {
+        resultTableComponent.checkIfTableIsNotVisible();
         return this;
     }
 
 
     //лучше вынести в отдельный компонент
     public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent()
-                .shouldHave(text(value));
+        resultTableComponent.checkResult(key,value);
         return this;
     }
 

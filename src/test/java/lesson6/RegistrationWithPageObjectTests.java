@@ -8,7 +8,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fillFormWithPageObjectTestPositive() {
+    void fillFormWithPageObjectPositiveTest() {
 
         registrationPage.openPage()
                 .setFirstNameInput("Nikita")
@@ -25,12 +25,53 @@ public class RegistrationWithPageObjectTests extends TestBase {
                 .setCity("Delhi")
                 .clickSubmitButton()
 
+                //проверки
+                .checkIfTableIsVisible()
+                .checkResult("Student Name","Nikita Ryazanov")
+                .checkResult("Student Email", "nikita@gmail.com")
+                .checkResult("Gender","Male")
+                .checkResult("Mobile","1234567890")
+                .checkResult("Date of Birth", "16 September,1993")
+                .checkResult("Subjects", "Maths")
+                .checkResult("Hobbies","Reading")
+                .checkResult("Picture","1.jpeg")
+                .checkResult("Address","Saint-Petersburg")
+                .checkResult("State and City","NCR Delhi");
+
+    }
+
+    @Test
+    void fillFormWithPageObjectRequiredFieldsTest (){
+        registrationPage.openPage()
+                .setFirstNameInput("Nikita")
+                .setLastNameInput("Ryazanov")
+                .setGenderInput("Male")
+                .setUserNumberInput("1234567891")
+                .clickSubmitButton()
 
                 //проверки
                 .checkIfTableIsVisible()
-                .checkResult("Student Name","Nikita Ryazanov");
+                .checkResult("Student Name","Nikita Ryazanov")
+                .checkResult("Gender","Male")
+                .checkResult("Mobile","1234567891");
+
+
+
+
 
     }
+
+    @Test
+    void fillFormWithPageObjectNegativeTest() {
+
+        registrationPage.openPage()
+                .clickSubmitButton()
+                //проверки
+                .checkIfTableIsNotVisible();
+
+    }
+
+
 
 }
 
