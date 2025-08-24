@@ -55,11 +55,6 @@ public class RegistrationWithPageObjectTests extends TestBase {
                 .checkResult("Student Name","Nikita Ryazanov")
                 .checkResult("Gender","Male")
                 .checkResult("Mobile","1234567891");
-
-
-
-
-
     }
 
     @Test
@@ -69,7 +64,6 @@ public class RegistrationWithPageObjectTests extends TestBase {
                 .clickSubmitButton()
                 //проверки
                 .checkIfTableIsNotVisible();
-
     }
 
 
