@@ -11,12 +11,13 @@ public class RegistrationWithPageObjectTests extends TestBase {
     void fillFormWithPageObjectPositiveTest() {
 
         registrationPage.openPage()
+                .removeBanner()
                 .setFirstNameInput("Nikita")
                 .setLastNameInput("Ryazanov")
                 .setEmailInput("nikita@gmail.com")
                 .setGenderInput("Male")
                 .setUserNumberInput("1234567890")
-                .setDateOfBirth("September", "1993", "16")
+                .setDateOfBirth("September", "1993", "07")
                 .setSubjectInput("Maths")
                 .setHobbiesInput("Reading")
                 .uploadPicture("1.jpeg")
@@ -31,7 +32,7 @@ public class RegistrationWithPageObjectTests extends TestBase {
                 .checkResult("Student Email", "nikita@gmail.com")
                 .checkResult("Gender","Male")
                 .checkResult("Mobile","1234567890")
-                .checkResult("Date of Birth", "16 September,1993")
+                .checkResult("Date of Birth", "7 September,1993")
                 .checkResult("Subjects", "Maths")
                 .checkResult("Hobbies","Reading")
                 .checkResult("Picture","1.jpeg")

@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
@@ -20,6 +20,8 @@ public class RegistrationPage {
             hobbiesInput = $("#hobbiesWrapper"),
             uploadPictureInput = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
+            stateInput = $("#state"),
+            cityInput = $("#city"),
             stateCityInput = $("#stateCity-wrapper"),
 
             submitInput = $("#submit");
@@ -29,11 +31,13 @@ public class RegistrationPage {
     ResultTableComponent resultTableComponent = new ResultTableComponent();
 
     public RegistrationPage openPage() {
-        //open website
         open("/automation-practice-form");
-        //remove ads
-        executeJavaScript("$('footer').remove();");
-        executeJavaScript("$('#fixedban').remove();");
+        return this;
+    }
+
+    public RegistrationPage removeBanner() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 
@@ -90,13 +94,13 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setState(String value) {
-        $("#state").click();
+        stateInput.click();
         stateCityInput.$(byText(value)).click();
         return this;
     }
 
     public RegistrationPage setCity(String value) {
-        $("#city").click();
+        cityInput.click();
         stateCityInput.$(byText(value)).click();
         return this;
     }

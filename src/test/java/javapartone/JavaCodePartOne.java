@@ -1,4 +1,4 @@
-package JavaPartOne;
+package javapartone;
 
 public class JavaCodePartOne {
 
