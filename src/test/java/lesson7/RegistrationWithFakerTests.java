@@ -3,7 +3,6 @@ package lesson7;
 import lesson6.TestBase;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import utils.RandomUtils;
 
 import static utils.RandomUtils.*;
 
@@ -11,7 +10,7 @@ import static utils.RandomUtils.*;
 public class RegistrationWithFakerTests extends TestBase {
 
 
-    public static String firstName = RandomUtils.getFirstName(),
+    public static String firstName = getFirstName(),
             lastName = getLastName(),
             fullName = getFullName(),
             email = getRandomEmail(),
