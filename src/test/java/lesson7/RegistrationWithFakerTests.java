@@ -5,8 +5,28 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
 
+import static utils.RandomUtils.*;
+
 
 public class RegistrationWithFakerTests extends TestBase {
+
+
+    public static String firstName = RandomUtils.getFirstName(),
+            lastName = getLastName(),
+            fullName = getFullName(),
+            email = getRandomEmail(),
+            phoneNumber = getRandomPhoneNumber(),
+            gender = getRandomGender(),
+            month = getRandomMonth(),
+            year = getRandomYear(),
+            day = getRandomDay(),
+            subject = getRandomSubject(),
+            hobbies = getRandomHobby(),
+            picture = getRandomPicture(),
+            address = getRandomAddress(),
+            state = getRandomState(),
+            city = getRandomCity(state),
+            stateAndCity = getStateAndCity();
 
     RegistrationPage registrationPage = new RegistrationPage();
 
@@ -15,49 +35,49 @@ public class RegistrationWithFakerTests extends TestBase {
 
         registrationPage.openPage()
                 .removeBanner()
-                .setFirstNameInput(RandomUtils.firstName)
-                .setLastNameInput(RandomUtils.lastName)
-                .setEmailInput(RandomUtils.email)
-                .setGenderInput(RandomUtils.gender)
-                .setUserNumberInput(RandomUtils.phoneNumber)
-                .setDateOfBirth(RandomUtils.month, RandomUtils.year,RandomUtils.day)
-                .setSubjectInput(RandomUtils.subject)
-                .setHobbiesInput(RandomUtils.hobbies)
-                .uploadPicture(RandomUtils.picture)
-                .setCurrentAddress(RandomUtils.address)
-                .setState(RandomUtils.state)
-                .setCity(RandomUtils.city)
+                .setFirstNameInput(firstName)
+                .setLastNameInput(lastName)
+                .setEmailInput(email)
+                .setGenderInput(gender)
+                .setUserNumberInput(phoneNumber)
+                .setDateOfBirth(month, year, day)
+                .setSubjectInput(subject)
+                .setHobbiesInput(hobbies)
+                .uploadPicture(picture)
+                .setCurrentAddress(address)
+                .setState(state)
+                .setCity(city)
                 .clickSubmitButton()
 
                 //проверки
                 .checkIfTableIsVisible()
-                .checkResult("Student Name", RandomUtils.fullName)
-                .checkResult("Student Email", RandomUtils.email)
-                .checkResult("Gender",RandomUtils.gender)
-                .checkResult("Mobile",RandomUtils.phoneNumber)
-                .checkResult("Date of Birth", RandomUtils.getDateOfBirth())
-                .checkResult("Subjects", RandomUtils.subject)
-                .checkResult("Hobbies",RandomUtils.hobbies)
-                .checkResult("Picture",RandomUtils.picture)
-                .checkResult("Address",RandomUtils.address)
-                .checkResult("State and City",RandomUtils.stateAndCity);
+                .checkResult("Student Name", fullName)
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", phoneNumber)
+                .checkResult("Date of Birth", getDateOfBirth())
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", picture)
+                .checkResult("Address", address)
+                .checkResult("State and City", stateAndCity);
 
     }
 
     @Test
-    void fillFormWithPageObjectRequiredFieldsTest (){
+    void fillFormWithPageObjectRequiredFieldsTest() {
         registrationPage.openPage()
-                .setFirstNameInput(RandomUtils.firstName)
-                .setLastNameInput(RandomUtils.lastName)
-                .setGenderInput(RandomUtils.gender)
-                .setUserNumberInput(RandomUtils.phoneNumber)
+                .setFirstNameInput(firstName)
+                .setLastNameInput(lastName)
+                .setGenderInput(gender)
+                .setUserNumberInput(phoneNumber)
                 .clickSubmitButton()
 
                 //проверки
                 .checkIfTableIsVisible()
-                .checkResult("Student Name",RandomUtils.fullName)
-                .checkResult("Gender",RandomUtils.gender)
-                .checkResult("Mobile",RandomUtils.phoneNumber);
+                .checkResult("Student Name", fullName)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", phoneNumber);
     }
 
     @Test
