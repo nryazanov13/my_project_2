@@ -3,7 +3,6 @@ package utils;
 import com.github.javafaker.Faker;
 
 import java.util.Locale;
-import java.util.Random;
 
 import static lesson7.RegistrationWithFakerTests.*;
 
@@ -36,17 +35,11 @@ public class RandomUtils {
 
     public static String getRandomGender() {
         String[] genders = {"Male", "Female", "Other"};
-        return getRandomItemFromArray(genders);
+        return faker.options().option(genders);
     }
-
-    public static String getRandomItemFromArray(String[] array) {
-        int index = new Random().nextInt(0, array.length - 1);
-        return array[index];
-    }
-
 
     public static String getRandomMonth() {
-        String[] months = {
+        return faker.options().option(
                 "January",
                 "February",
                 "March",
@@ -57,40 +50,55 @@ public class RandomUtils {
                 "August",
                 "September",
                 "October",
-                "November",
-                "December"
-        };
-        return getRandomItemFromArray(months);
-    }
-
-    public static String getRandomYear() {
-        int year = new Random().nextInt(1990, 2021);
-        return String.valueOf(year);
+                "November"
+                ,"December"
+        );
     }
 
     public static String getRandomDay() {
-        int day = new Random().nextInt(1, 30);
-        return String.valueOf(day);
+        return String.valueOf(faker.date().birthday().getDate());
     }
+
+    public static String getRandomYear() {
+        return String.valueOf(1900 + faker.date().birthday().getYear());
+    }
+
 
     public static String getDateOfBirth() {
         return day + " " + month + "," + year;
     }
 
     public static String getRandomSubject() {
-        String[] subjects = {"Maths", "Physics", "Chemistry", "Computer Science",
-                "English", "Biology", "History", "Arts"};
-        return getRandomItemFromArray(subjects);
+        String[] subjects = {
+                "Maths",
+                "Physics",
+                "Chemistry",
+                "Computer Science",
+                "English",
+                "Biology",
+                "History",
+                "Arts"
+        };
+        return faker.options().option(subjects);
     }
 
     public static String getRandomHobby() {
-        String[] hobbies = {"Reading", "Sports", "Music"};
-        return getRandomItemFromArray(hobbies);
+        String[] hobbies = {
+                "Reading",
+                "Sports",
+                "Music"
+        };
+        return faker.options().option(hobbies);
     }
 
     public static String getRandomPicture() {
-        String[] pictures = {"1.jpeg", "2.png", "3.jpg", "4.gif"};
-        return getRandomItemFromArray(pictures);
+        String[] pictures = {
+                "1.jpeg",
+                "2.png",
+                "3.jpg",
+                "4.gif"
+        };
+        return faker.options().option(pictures);
     }
 
     public static String getRandomAddress() {
@@ -104,15 +112,15 @@ public class RandomUtils {
                 "Haryana",
                 "Rajasthan"
         };
-        return getRandomItemFromArray(states);
+        return faker.options().option(states);
     }
 
     public static String getRandomCity(String state) {
         return switch (state) {
-            case "NCR" -> getRandomItemFromArray(new String[]{"Delhi", "Gurgaon", "Noida"});
-            case "Uttar Pradesh" -> getRandomItemFromArray(new String[]{"Agra", "Lucknow", "Merrut"});
-            case "Haryana" -> getRandomItemFromArray(new String[]{"Karnal", "Panipat"});
-            case "Rajasthan" -> getRandomItemFromArray(new String[]{"Jaipur", "Jaiselmer"});
+            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
+            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
+            case "Haryana" -> faker.options().option("Karnal", "Panipat");
+            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
             default -> "Delhi";
         };
     }
