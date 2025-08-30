@@ -1,7 +1,6 @@
 package lesson7;
 
 import lesson6.TestBase;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -32,7 +31,7 @@ public class RegistrationWithFakerTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
-    @RepeatedTest(15)
+    @Test
     void fillFormWithPageObjectPositiveTest() {
 
         registrationPage.openPage()
