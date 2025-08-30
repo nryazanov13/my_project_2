@@ -1,6 +1,7 @@
 package lesson7;
 
 import lesson6.TestBase;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -10,26 +11,28 @@ import static utils.RandomUtils.*;
 public class RegistrationWithFakerTests extends TestBase {
 
 
-    public static String firstName = getFirstName(),
+    private final String
+            firstName = getFirstName(),
             lastName = getLastName(),
-            fullName = getFullName(),
+            fullName = firstName + " " + lastName,
             email = getRandomEmail(),
             phoneNumber = getRandomPhoneNumber(),
             gender = getRandomGender(),
             month = getRandomMonth(),
             year = getRandomYear(),
-            day = getRandomDay(),
+            day = getRandomDay(month),
+            dateOfBirth = day + " " + month + "," + year,
             subject = getRandomSubject(),
             hobbies = getRandomHobby(),
             picture = getRandomPicture(),
             address = getRandomAddress(),
             state = getRandomState(),
             city = getRandomCity(state),
-            stateAndCity = getStateAndCity();
+            stateAndCity = state + " " + city;
 
     RegistrationPage registrationPage = new RegistrationPage();
 
-    @Test
+    @RepeatedTest(15)
     void fillFormWithPageObjectPositiveTest() {
 
         registrationPage.openPage()
@@ -39,7 +42,7 @@ public class RegistrationWithFakerTests extends TestBase {
                 .setEmailInput(email)
                 .setGenderInput(gender)
                 .setUserNumberInput(phoneNumber)
-                .setDateOfBirth(month, year, day)
+                .setDateOfBirth(day, month , year)
                 .setSubjectInput(subject)
                 .setHobbiesInput(hobbies)
                 .uploadPicture(picture)
@@ -54,7 +57,7 @@ public class RegistrationWithFakerTests extends TestBase {
                 .checkResult("Student Email", email)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", phoneNumber)
-                .checkResult("Date of Birth", getDateOfBirth())
+                .checkResult("Date of Birth", dateOfBirth)
                 .checkResult("Subjects", subject)
                 .checkResult("Hobbies", hobbies)
                 .checkResult("Picture", picture)

@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ResultTableComponent {
 
-    private SelenideElement table = $(".table-responsive");
+    private final SelenideElement table = $(".table-responsive");
 
     public ResultTableComponent checkIfTableIsVisible() {
         table.shouldBe(visible);
@@ -21,8 +21,9 @@ public class ResultTableComponent {
         return this;
     }
 
-    public void checkResult(String key, String value) {
+    public ResultTableComponent checkResult(String key, String value) {
         table.$(byText(key)).parent().shouldHave(text(value));
+        return this;
     }
 
 

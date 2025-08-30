@@ -4,8 +4,6 @@ import com.github.javafaker.Faker;
 
 import java.util.Locale;
 
-import static lesson7.RegistrationWithFakerTests.*;
-
 
 public class RandomUtils {
 
@@ -19,10 +17,6 @@ public class RandomUtils {
 
     public static String getLastName() {
         return faker.name().lastName();
-    }
-
-    public static String getFullName() {
-        return firstName + " " + lastName;
     }
 
     public static String getRandomEmail() {
@@ -55,18 +49,20 @@ public class RandomUtils {
         );
     }
 
-    public static String getRandomDay() {
-        return String.valueOf(faker.date().birthday().getDate());
+    public static String getRandomDay(String month) {
+        int maxDays = switch (month) {
+            case "January", "March", "May", "July", "August", "October", "December" -> 31;
+            case "April", "June", "September", "November" -> 30;
+            case "February" -> 28;
+            default -> throw new IllegalArgumentException(month);
+        };
+        return String.valueOf(faker.number().numberBetween(1, maxDays));
     }
 
     public static String getRandomYear() {
-        return String.valueOf(1900 + faker.date().birthday().getYear());
+        return String.valueOf(faker.number().numberBetween(1940,2025));
     }
 
-
-    public static String getDateOfBirth() {
-        return day + " " + month + "," + year;
-    }
 
     public static String getRandomSubject() {
         String[] subjects = {
@@ -124,10 +120,4 @@ public class RandomUtils {
             default -> "Delhi";
         };
     }
-
-    public static String getStateAndCity() {
-        return state + " " + city;
-    }
-
-
 }
