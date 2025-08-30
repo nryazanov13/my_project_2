@@ -56,7 +56,7 @@ public class RandomUtils {
             case "February" -> 28;
             default -> throw new IllegalArgumentException(month);
         };
-        return String.valueOf(faker.number().numberBetween(1, maxDays));
+        return String.valueOf(faker.number().numberBetween(1, maxDays + 1));
     }
 
     public static String getRandomYear() {
