@@ -24,8 +24,9 @@ public class ArrayListExample {
 
     //exact match
     public void findFruit(String fruitToFind) {
-        if (fruits.contains(fruitToFind)) {
-            System.out.println("Found: " + fruitToFind);
+        String search = fruitToFind.toLowerCase();
+        if (fruits.contains(search)) {
+            System.out.println("Found: " + search);
         } else {
             System.out.println("Not found: " + fruitToFind);
         }
@@ -43,16 +44,17 @@ public class ArrayListExample {
     }
 
     public void addFruit(String fruit) {
-        fruits.add(fruit);
+        fruits.add(fruit.toLowerCase());
     }
 
     public void removeFruit(String fruit) {
-        fruits.remove(fruit);
+        fruits.remove(fruit.toLowerCase());
     }
 
     public void showAllFruits() {
-        for (String fruit : fruits){
-            System.out.println(fruit);
+        System.out.println("\nAll fruits:");
+        for (int i = 0; i < fruits.size(); i++) {
+            System.out.println((i + 1) + ". " + fruits.get(i));
         }
     }
 
