@@ -1,6 +1,6 @@
-package lesson7;
+package alesson7;
 
-import lesson6.TestBase;
+import helpers.TestBase;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -11,8 +11,8 @@ public class RegistrationWithFakerTests extends TestBase {
 
 
     private final String
-            firstName = getFirstName(),
-            lastName = getLastName(),
+            firstName = getRandomFirstName(),
+            lastName = getRandomLastName(),
             fullName = firstName + " " + lastName,
             email = getRandomEmail(),
             phoneNumber = getRandomPhoneNumber(),
@@ -34,7 +34,8 @@ public class RegistrationWithFakerTests extends TestBase {
     @Test
     void fillFormWithPageObjectPositiveTest() {
 
-        registrationPage.openPage()
+        registrationPage
+                .openPage()
                 .removeBanner()
                 .setFirstNameInput(firstName)
                 .setLastNameInput(lastName)

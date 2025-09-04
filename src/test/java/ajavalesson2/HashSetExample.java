@@ -1,4 +1,4 @@
-package javaparttwo;
+package ajavalesson2;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -68,7 +68,6 @@ public class HashSetExample {
         }
     }
 
-    // НОВЫЙ МЕТОД С ЦИКЛОМ WHILE
     public void removeFruitsStartingWith(String prefix) {
         System.out.println("Removing fruits starting with '" + prefix + "':");
 

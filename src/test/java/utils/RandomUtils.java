@@ -11,11 +11,11 @@ public class RandomUtils {
     public static Faker faker = new Faker(Locale.ENGLISH);
 
 
-    public static String getFirstName() {
+    public static String getRandomFirstName() {
         return faker.name().firstName();
     }
 
-    public static String getLastName() {
+    public static String getRandomLastName() {
         return faker.name().lastName();
     }
 

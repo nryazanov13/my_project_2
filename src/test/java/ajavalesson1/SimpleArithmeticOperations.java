@@ -1,6 +1,6 @@
-package javapartone;
+package ajavalesson1;
 
-public class JavaCodePartOne {
+public class SimpleArithmeticOperations {
 
     public static void main(String[] args) {
 

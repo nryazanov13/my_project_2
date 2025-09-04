@@ -1,5 +1,6 @@
-package lesson6;
+package alesson6;
 
+import helpers.TestBase;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 

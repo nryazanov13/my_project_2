@@ -17,6 +17,19 @@ dependencies {
     )
 }
 
+// ✅ Правильный синтаксис для Gradle 7+
+tasks.named('compileJava', JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('compileTestJava', JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 test {
     useJUnitPlatform()
+}
+
+tasks.named('javadoc', Javadoc) {
+    options.encoding = 'UTF-8'
 }

@@ -1,4 +1,4 @@
-package lesson4;
+package alesson4;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
